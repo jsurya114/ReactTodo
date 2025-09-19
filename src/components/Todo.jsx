@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState,useRef, useEffect } from "react";
 
 function Todo() {
   const [task, setTask] = useState("");
   const [items, setItems] = useState([]);
   const [edit, setEdit] = useState(null);
+
+  const inputvalue=useRef(null)
+
+  function change(){
+    inputvalue.current.focus()
+  }
+
+
+
+
 
   function addList() {
     if (task.trim() === "") return;
@@ -20,13 +30,13 @@ function Todo() {
   }
 
   function deleteList(index) {
-    const remove = items.filter((_, i) => i !== index);
+    const remove = items.filter((val, i) => i !== index);
     setItems(remove);
   }
 
   function editList(index) {
-    setTask(items[index]);
-    setEdit(index);
+    setTask(items[index])
+    setEdit(index)
   }
 
   return (
@@ -41,7 +51,7 @@ function Todo() {
             type="text"
             placeholder="Add a new task..."
             value={task}
-            onChange={(e) => setTask(e.target.value)}
+            onChange={()=>{e.tar}}
             className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
           <button
